@@ -170,7 +170,7 @@ function App() {
         let collisionEntity = tempEntities[collidingEntityIds[id]];
         let xDif = collisionEntity.x - entity.x;
         let yDif = collisionEntity.y - entity.y;
-        let xRatio = Math.abs(xDif) / (Math.abs(xDif)+Math.abs(yDif));
+        let xRatio = Math.abs(xDif) / Math.max(1, (Math.abs(xDif)+Math.abs(yDif)));
         let stepX = Math.round(Math.sqrt(speed*speed*xRatio));
         let stepY = Math.round(Math.sqrt(speed*speed*(1-xRatio)));
         step[id] = {x: stepX, y: stepY};
@@ -301,7 +301,7 @@ function App() {
         <br /><br />
         <input className="idSelector" type='button' 
           value={'Go!'}
-          onClick={() => {setDots(numDots, minRadius, maxRadius, false, setNumDots);setUpdates(updates + 1)}}
+          onClick={() => {setDots(numDots, minRadius, maxRadius, setNumDots);setUpdates(updates + 1)}}
         />
       </div>
     </div>
